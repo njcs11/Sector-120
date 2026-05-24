@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://cx2g1umjuva8e"]
+
+[ext_resource type="Script" uid="uid://cq3dswyrvshuy" path="res://scripts/MainMenu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ckcsswb7a0kjw" path="res://assets/mainMenuBG.jpg" id="2_0ykhv"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+bg_color = Color(0.06, 0.02, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.1, 1, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="2"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25, 0.05, 0.55, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.3, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.4, 0, 0.8, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.5, 0.1, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.3, 0.3, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MainMenu" type="Control" unique_id=780872334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1670799647]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0ykhv")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1089999564]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(640, 360)
+
+[node name="DarkOverlay" type="ColorRect" parent="." unique_id=1797315193]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="CenterPanel" type="PanelContainer" parent="." unique_id=1712095027]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -240.0
+offset_right = 200.0
+offset_bottom = 240.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="CenterPanel" unique_id=559495103]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CenterPanel/VBox" unique_id=625350604]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.2, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0, 0.6, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 58
+text = "SECTOR 120"
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="CenterPanel/VBox" unique_id=1440286093]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.55, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Alien Survival Shooter"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterPanel/VBox" unique_id=177689479]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterPanel/VBox" unique_id=2102063888]
+custom_minimum_size = Vector2(320, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("2")
+theme_override_styles/hover = SubResource("3")
+text = "▶   PLAY"
+
+[node name="ControlsButton" type="Button" parent="CenterPanel/VBox" unique_id=1474863266]
+custom_minimum_size = Vector2(320, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("2")
+theme_override_styles/hover = SubResource("3")
+text = "⚙   CONTROLS"
+
+[node name="QuitButton" type="Button" parent="CenterPanel/VBox" unique_id=2009973819]
+custom_minimum_size = Vector2(320, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("4")
+text = "✕   QUIT"
+
+[node name="ControlsPanel" type="PanelContainer" parent="." unique_id=1048434302]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -190.0
+offset_right = 240.0
+offset_bottom = 190.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="ControlsPanel" unique_id=1695642348]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleRow" type="Label" parent="ControlsPanel/VBox" unique_id=1896873281]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.2, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "— CONTROLS —"
+horizontal_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="ControlsPanel/VBox" unique_id=204207372]
+layout_mode = 2
+
+[node name="ControlsLabel" type="Label" parent="ControlsPanel/VBox" unique_id=1627161372]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "A / D            Move Left / Right
+Space           Jump / Double Jump
+Ctrl               Crouch
+Left Click     Shoot toward cursor
+Enter            Restart after Game Over"
+
+[node name="Spacer" type="Control" parent="ControlsPanel/VBox" unique_id=430866790]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="ControlsPanel/VBox" unique_id=1100966573]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("2")
+text = "✕  Close"
+
+[connection signal="pressed" from="CenterPanel/VBox/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterPanel/VBox/ControlsButton" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="CenterPanel/VBox/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ControlsPanel/VBox/CloseButton" to="." method="_on_close_pressed"]

@@ -1,0 +1,16 @@
+res://scenes/EnemyBullet.tscn
+res://scripts/Boss.gd
+res://scenes/BossBullet.tscn
+res://scenes/Main.tscn
+res://scripts/HUD.gd
+res://scripts/BossBullet.gd
+res://scenes/Boss.tscn
+res://scripts/MainMenu.gd
+res://scenes/MainMenu.tscn
+res://scenes/Enemy.tscn
+res://scripts/Main.gd
+res://scripts/ScrollingPlatform.gd
+res://scripts/Bullet.gd
+res://scripts/EnemyBullet.gd
+res://assets/mainMenuBG.jpg
+res://scripts/WaveManager.gd

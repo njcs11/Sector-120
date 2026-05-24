@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://boss001"]
+
+[ext_resource type="Script" uid="uid://cg4opu6w8xkpe" path="res://scripts/Boss.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://df8agsjbxs8vf" path="res://assets/boss.png" id="2"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 30.0
+height = 60.0
+
+[node name="Boss" type="CharacterBody2D" unique_id=1041442592]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1728628990]
+position = Vector2(0, -40)
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126587071]
+position = Vector2(0, -40)
+shape = SubResource("1")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1377309735]
