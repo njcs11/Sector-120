@@ -13,6 +13,7 @@ const TRANS_PAUSE:= 3.5
 @onready var player       : CharacterBody2D = $Player
 
 func _ready() -> void:
+	get_tree().paused = false
 	wave_manager.wave_started.connect(_on_wave_started)
 	wave_manager.wave_completed.connect(_on_wave_completed)
 	wave_manager.all_waves_completed.connect(_on_all_done)
@@ -32,8 +33,7 @@ func _begin_next_wave() -> void:
 	wave_manager.start_wave(current_wave)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and state == State.GAME_OVER:
-		get_tree().reload_current_scene()
+	pass
 	if state == State.TRANSITION:
 		_trans_timer -= delta
 		if _trans_timer <= 0.0:

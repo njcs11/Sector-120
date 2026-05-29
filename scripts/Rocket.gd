@@ -3,7 +3,7 @@ extends Area2D
 
 var speed     : float = 500.0
 var direction : Vector2 = Vector2.RIGHT
-var damage    : int = 350
+var damage    : int = 800
 var _timer    : float = 0.0
 
 func _ready() -> void:

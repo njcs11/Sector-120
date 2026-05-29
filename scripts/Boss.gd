@@ -26,6 +26,7 @@ var _enrage_active     : bool  = false
 var _stomp_timer       : float = 5.0
 var _phase2_sfx_played : bool = false
 var _phase3_sfx_played : bool = false	
+var _spawn_sfx : AudioStreamPlayer = null
 
 @onready var sprite : Sprite2D = $Sprite2D
 
@@ -34,17 +35,26 @@ var boss_bullet_scene := preload("res://scenes/BossBullet.tscn")
 # ── Audio ─────────────────────────────────────────────────────────────────────
 # Add an AudioStreamPlayer node named SFXPlayer under the Boss scene
 func _play_sfx(stream_path: String) -> void:
-	var sfx := get_node_or_null("SFXPlayer") as AudioStreamPlayer
-	if not sfx: return
 	var s := load(stream_path) as AudioStream
-	if s:
-		sfx.stream = s
-		sfx.play()
+	if not s: return
+	var sfx := AudioStreamPlayer.new()
+	get_tree().current_scene.add_child(sfx)
+	sfx.stream = s
+	sfx.play()
+	sfx.finished.connect(sfx.queue_free)
 
 func _ready() -> void:
 	add_to_group("enemies")
 	current_health = MAX_HEALTH
 	boss_health_changed.emit(current_health, MAX_HEALTH)
+	# Play spawn audio
+	var s := load("res://audio/boss_spawn.wav") as AudioStream
+	if s:
+		_spawn_sfx = AudioStreamPlayer.new()
+		get_tree().current_scene.call_deferred("add_child", _spawn_sfx)
+		_spawn_sfx.stream = s
+		await get_tree().process_frame
+		_spawn_sfx.play()
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -64,10 +74,16 @@ func _physics_process(delta: float) -> void:
 		phase = new_phase
 		if phase == Phase.PHASE2 and not _phase2_sfx_played:
 			_phase2_sfx_played = true
+			if is_instance_valid(_spawn_sfx):
+				_spawn_sfx.stop()
+				_spawn_sfx.queue_free()
 			_play_sfx("res://audio/boss_phase2.wav")
 		elif phase == Phase.PHASE3 and not _phase3_sfx_played:
 			_phase3_sfx_played = true
 			_enrage_active = true
+			if is_instance_valid(_spawn_sfx):
+				_spawn_sfx.stop()
+				_spawn_sfx.queue_free()
 			_play_sfx("res://audio/boss_enrage.wav")
 
 	# Gravity

@@ -25,7 +25,7 @@ var has_bazooka     := false
 var bazooka_ammo    := 0
 var _speed_boosted  := false  # true while bazooka active
 
-@onready var sprite    : Sprite2D = $Sprite2D
+@onready var sprite : AnimatedSprite2D = $Sprite2D
 @onready var gun_point : Marker2D = $GunPoint
 
 var bullet_scene := preload("res://scenes/Bullet.tscn")
@@ -57,10 +57,10 @@ func _physics_process(delta: float) -> void:
 	var dir := Input.get_axis("move_left", "move_right")
 	var crouching := Input.is_key_pressed(KEY_CTRL)
 	if crouching:
-		$Sprite2D.texture = preload("res://assets/player_crouch.png")
+		sprite.play("crouch")
 		velocity.x = dir * (SPEED_NORMAL * 0.4)
 	else:
-		$Sprite2D.texture = preload("res://assets/player.png")
+		pass
 	var current_speed := SPEED_BOOSTED if _speed_boosted else SPEED_NORMAL
 	if not crouching:
 		velocity.x = dir * current_speed
@@ -97,6 +97,14 @@ func _physics_process(delta: float) -> void:
 
 	sprite.flip_h = get_global_mouse_position().x < global_position.x
 	move_and_slide()
+	
+	# Animation
+	if crouching:
+		sprite.play("crouch")
+	elif abs(velocity.x) > 10.0:
+		sprite.play("walk")
+	else:
+		sprite.play("idle")
 
 	var vw := get_viewport_rect().size.x
 	global_position.x = clamp(global_position.x, 20.0, vw - 20.0)

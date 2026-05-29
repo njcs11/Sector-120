@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var scroll_speed : float = 90.0
-@export var bg_width     : float = 1280.0
+@export var bg_width     : float = 1279.0
 
 @onready var bg1 : Sprite2D = $Background1
 @onready var bg2 : Sprite2D = $Background2

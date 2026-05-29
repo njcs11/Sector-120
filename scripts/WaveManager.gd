@@ -102,7 +102,6 @@ func spawn_boss() -> void:
 	b.boss_health_changed.connect(func(c: int, m: int): enemy_count_changed.emit(c, m))
 	get_tree().current_scene.add_child(b)
 	boss_spawned.emit()
-	_play_sfx("res://audio/boss_spawn.wav")
 
 func _on_enemy_died(points: int) -> void:
 	enemies_alive -= 1
